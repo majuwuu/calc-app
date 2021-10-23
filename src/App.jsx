@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Functions from './Functions'
 import Numbers from './components/Numbers'
 import MathOperations from './components/MathOperations'
@@ -8,13 +8,24 @@ import './App.css'
 
    // Función flecha
 const App = () => {
+   
+   const arrayTextoFuncionModificaTexto = useState("")
+   // arrayTextoFuncionModificaTexto => ["hola", funcion]
+   
+   //1er  posición: valor (que inicialmente es el valor por defecto)
+   const texto = arrayTextoFuncionModificaTexto[0]
+ 
+   //2da posición: función que me va a permitir modificar el valor por defecto
+   const funcionModificaTexto = arrayTextoFuncionModificaTexto[1]
 
       //Lo que ejecuta la función
+      console.log("renderizacion de la app")
    return (
    <main className='react-calculator'>
-      <Result value= {undefined}/>
+      <Result value= {texto}/>
       <Numbers onClickNumber={number => {
-            console.log("Click en number", number) 
+            console.log("Click en number", number)
+            funcionModificaTexto(number) 
         }} />
       <Functions
          onContentClear ={() =>
